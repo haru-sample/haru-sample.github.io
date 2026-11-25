@@ -110,7 +110,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.m
     mx += (tx - mx) * .05; my += (ty - my) * .05;
     uniforms.uTime.value = t;
     uniforms.uMouse.value.set(mx, my);
-    uniforms.uDim.value = 1 - hero * .45;
+    uniforms.uDim.value = 1 - hero * .62;
     /* camera glides over the wave as the page scrolls */
     camera.position.set(mx * .8, 3.4 + s * 2.6 - my * .4, 9 - s * 3);
     camera.lookAt(0, -1.2 - s * 1.5, -6);
