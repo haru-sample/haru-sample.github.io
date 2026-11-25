@@ -631,6 +631,7 @@ html.anim [data-in]{opacity:0}
   window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
 })();
 </script>
-<script type="module" src="bg3d.js"></script>
+<script>/* load the 3D background after the page itself is ready */
+window.addEventListener('load',function(){var s=document.createElement('script');s.type='module';s.src='bg3d.js?v=3';document.body.appendChild(s);});</script>
 </body>
 </html>
