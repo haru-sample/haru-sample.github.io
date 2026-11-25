@@ -53,7 +53,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.m
       '}'].join('\n')
   });
   var pts = new THREE.Points(geo, mat);
-  pts.position.set(0, -2, -6);
+  pts.position.set(0, -2.4, -6);
   group.add(pts);
 
   /* floating dust in front of the wave for depth */
