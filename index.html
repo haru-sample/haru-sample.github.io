@@ -274,7 +274,7 @@ html.anim [data-in]{opacity:0}
       <p class="lead" data-in>ショート動画、SNS広告、図解アニメーション、YouTube編集。そして、その先のLP・ホームページまで。企画・構成から仕上げまで、まとめてお任せください。</p>
       <div class="ctas" data-in>
         <a class="btn btn-main" href="#video">作品を見る <span class="arr" aria-hidden="true">→</span></a>
-        <a class="btn btn-line" href="https://crowdworks.jp/public/employees/1147293" target="_blank" rel="noopener">相談する <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-line" data-contact href="https://crowdworks.jp/public/employees/1147293" target="_blank" rel="noopener">相談する <span class="arr" aria-hidden="true">→</span></a>
       </div>
       <div class="tags" data-in><span>修正2回無料</span><span>最短24時間納品</span><span>土日祝も対応</span></div>
     </div>
@@ -472,9 +472,9 @@ html.anim [data-in]{opacity:0}
   <div class="wrap">
     <p class="eyebrow" data-in>Contact</p>
     <h2 aria-label="まずは、相談から。"><span aria-hidden="true" data-split-plain>まずは、<br><em>相談</em>から。</span></h2>
-    <p data-in>「こんな動画はできますか?」「だいたいいくら?」だけでも大歓迎です。クラウドワークスのメッセージからお気軽にどうぞ。</p>
+    <p data-in data-contact-text>「こんな動画はできますか?」「だいたいいくら?」だけでも大歓迎です。クラウドワークスのメッセージからお気軽にどうぞ。</p>
     <div class="ctas" data-in>
-      <a class="btn btn-main" href="https://crowdworks.jp/public/employees/1147293" target="_blank" rel="noopener">クラウドワークスで相談する <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn-main" data-contact data-contact-label href="https://crowdworks.jp/public/employees/1147293" target="_blank" rel="noopener">クラウドワークスで相談する <span class="arr" aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -487,6 +487,20 @@ html.anim [data-in]{opacity:0}
   </div>
 </footer>
 
+<script>
+/* ココナラから来た人には、相談先をココナラにする(?from=coconala。同じタブ内では引き継ぐ) */
+(function(){
+  var cc = /[?&]from=coconala\b/.test(location.search);
+  try { if (cc) sessionStorage.setItem('haru-from','coconala'); else cc = sessionStorage.getItem('haru-from') === 'coconala'; } catch (e) {}
+  if (!cc) return;
+  var url = 'https://coconala.com/users/6418698';
+  document.querySelectorAll('[data-contact]').forEach(function(a){ a.href = url; });
+  var lab = document.querySelector('[data-contact-label]');
+  if (lab) lab.firstChild.textContent = 'ココナラで相談する ';
+  var t = document.querySelector('[data-contact-text]');
+  if (t) t.textContent = '「こんな動画はできますか?」「だいたいいくら?」だけでも大歓迎です。ココナラのメッセージからお気軽にどうぞ。';
+})();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
