@@ -21,7 +21,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.m
   geo.rotateX(-Math.PI / 2);
   var uniforms = {
     uTime: { value: 0 }, uMouse: { value: new THREE.Vector2(0, 0) }, uDim: { value: 1 },
-    uPx: { value: px * (small ? 1.25 : 1) }, uPink: { value: new THREE.Color('#ff4f87') }
+    uPx: { value: px * (small ? .75 : 1) }, uPink: { value: new THREE.Color('#ff4f87') }
   };
   var mat = new THREE.ShaderMaterial({
     uniforms: uniforms, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
@@ -110,7 +110,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.m
     mx += (tx - mx) * .05; my += (ty - my) * .05;
     uniforms.uTime.value = t;
     uniforms.uMouse.value.set(mx, my);
-    uniforms.uDim.value = 1 - hero * .62;
+    uniforms.uDim.value = 1 - hero * (small ? .72 : .62);
     /* camera glides over the wave as the page scrolls */
     camera.position.set(mx * .8, 3.4 + s * 2.6 - my * .4, 9 - s * 3);
     camera.lookAt(0, -1.2 - s * 1.5, -6);
