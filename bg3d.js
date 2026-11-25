@@ -125,6 +125,6 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.m
   else start();
   document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
   canvas.addEventListener('webglcontextlost', function(e){ e.preventDefault(); stop(); canvas.style.display = 'none'; });
-  requestAnimationFrame(function(){ canvas.classList.add('ready'); });
+  frame(); setTimeout(function(){ canvas.classList.add('ready'); }, 60);
   window.addEventListener('pagehide', function(){ stop(); geo.dispose(); mat.dispose(); dgeo.dispose(); dmat.dispose(); renderer.dispose(); });
 })();
