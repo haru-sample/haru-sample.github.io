@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SORA Pilates|LP制作見本</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#24232b; --sub:#6f6b73; --mute:#a29d9f;
+  --bg:#f7f3ee; --paper:#fffdf9; --line:#e7dfd5;
+  --sage:#6f8b77; --sage-d:#4f6857; --sage-l:#dfe7df;
+  --clay:#c98d7b; --clay-l:#f3ddd4; --sand:#ece3d6;
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans",sans-serif;
+  --en:"Cormorant Garamond",serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.en{font-family:var(--en);font-style:italic;font-weight:400;letter-spacing:.02em}
+.eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--en);font-style:italic;font-size:20px;color:var(--sage)}
+.eyebrow::before{content:"";width:28px;height:1px;background:currentColor}
+h2.title{font-family:var(--serif);font-weight:700;font-size:clamp(28px,3.6vw,42px);line-height:1.5;letter-spacing:.04em;margin-top:10px}
+.notice{background:var(--ink);color:#e9e5df;font-size:12px;text-align:center;padding:7px 16px;letter-spacing:.04em}
+
+/* header */
+header{position:sticky;top:0;z-index:50;transition:background .3s,box-shadow .3s}
+header.scrolled{background:rgba(247,243,238,.86);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:baseline;gap:10px}
+.logo b{font-family:var(--serif);font-size:24px;letter-spacing:.28em;font-weight:800}
+.logo span{font-family:var(--en);font-style:italic;font-size:17px;color:var(--sage)}
+nav{display:flex;gap:34px;font-size:14px;color:var(--sub)}
+nav a{position:relative}
+nav a::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:1px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+nav a:hover::after{transform:scaleX(1);transform-origin:left}
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:#fff;font-weight:700;font-size:15px;letter-spacing:.06em;border-radius:999px;padding:18px 20px 18px 32px;overflow:hidden;isolation:isolate;transition:transform .4s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;background:var(--sage-d);transform:translateY(101%);transition:transform .5s var(--ease);z-index:-1;border-radius:inherit}
+.btn:hover::before{transform:none}
+.btn:hover{transform:translateY(-2px)}
+.btn .arr{width:34px;height:34px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;transition:transform .4s var(--ease)}
+.btn:hover .arr{transform:rotate(-45deg)}
+.btn.sm{padding:10px 10px 10px 22px;font-size:13px}
+.btn.sm .arr{width:28px;height:28px}
+.btn.light{background:#fff;color:var(--ink)}
+.btn.light .arr{background:var(--ink);color:#fff}
+.btn.light::before{background:var(--clay-l)}
+
+/* hero */
+.hero{position:relative;padding:40px 0 120px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-family:var(--serif);font-weight:800;font-size:clamp(28px,4.3vw,54px);line-height:1.42;letter-spacing:.04em;margin:22px 0 28px}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l > span{display:inline-block;white-space:nowrap;animation:up 1.1s var(--ease) both}
+.hero h1 .l:nth-child(2) > span{animation-delay:.12s}
+.hero h1 .l:nth-child(3) > span{animation-delay:.24s}
+.hero h1 em{font-style:normal;color:var(--sage-d);position:relative}
+.hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.08em;height:.32em;background:var(--clay-l);z-index:-1;transform-origin:left;animation:grow 1s .9s var(--ease) both}
+@keyframes up{from{transform:translateY(110%)}to{transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero p.lead{color:var(--sub);font-size:17px;max-width:30em;margin-bottom:40px}
+.hero .meta{display:flex;gap:28px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.hero .meta div{font-size:12px;color:var(--sub);letter-spacing:.06em}
+.hero .meta b{display:block;font-family:var(--serif);font-size:28px;color:var(--ink);letter-spacing:.02em;line-height:1.3}
+.hero .meta b small{font-size:14px}
+
+.art{position:relative;aspect-ratio:5/6}
+.arch{position:absolute;border-radius:999px 999px 28px 28px;overflow:hidden}
+.arch.a1{inset:0 18% 6% 0;background:linear-gradient(170deg,#e4ebe2 0%,#efe4d6 55%,#f2d6cb 100%)}
+.arch.a2{width:42%;aspect-ratio:3/4;right:0;bottom:0;background:linear-gradient(160deg,#c9d6c9,#9fb5a3);border-radius:999px 999px 22px 22px}
+.arch svg{position:absolute;inset:0;width:100%;height:100%}
+.float{position:absolute;background:rgba(255,253,249,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.8);border-radius:20px;box-shadow:0 30px 60px -30px rgba(36,35,43,.35);padding:18px 20px;animation:bob 6s ease-in-out infinite}
+.float.f1{left:-36px;top:14%;width:230px}
+.float.f2{right:6%;top:-4%;animation-delay:-3s;display:flex;align-items:center;gap:12px}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.f1 .t{font-size:12px;color:var(--sub);display:flex;justify-content:space-between}
+.f1 .t b{color:var(--ink)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:10px}
+.slots span{font-size:12px;text-align:center;border-radius:8px;padding:6px 0;background:var(--sage-l);color:var(--sage-d);font-weight:700}
+.slots span.x{background:#f1ede8;color:var(--mute);text-decoration:line-through;font-weight:400}
+.slots span.on{background:var(--sage-d);color:#fff}
+.f2 .stars{color:#d9a441;font-size:14px;letter-spacing:2px;line-height:1}
+.f2 b{font-family:var(--serif);font-size:26px;line-height:1}
+.f2 small{display:block;font-size:11px;color:var(--sub)}
+.circle-text{position:absolute;left:38%;bottom:-6%;width:130px;height:130px;animation:spin 22s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* marquee */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding:22px 0;background:var(--paper)}
+.marquee .track{display:flex;gap:56px;width:max-content;animation:mq 38s linear infinite}
+.marquee span{font-family:var(--en);font-style:italic;font-size:34px;color:var(--ink);white-space:nowrap;display:flex;align-items:center;gap:56px}
+.marquee span::after{content:"✦";font-style:normal;font-size:16px;color:var(--clay)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+section{padding:130px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:64px}
+.sec-head p{color:var(--sub);max-width:28em}
+
+/* worries */
+.worries .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.worry{background:var(--paper);border:1px solid var(--line);border-radius:22px;padding:30px 24px 34px;transition:transform .5s var(--ease),box-shadow .5s}
+.worry:hover{transform:translateY(-6px);box-shadow:0 26px 40px -28px rgba(36,35,43,.4)}
+.worry .ic{width:54px;height:54px;border-radius:50%;background:var(--clay-l);display:grid;place-items:center;color:var(--clay);margin-bottom:22px}
+.worry p{font-weight:700;font-size:16px;line-height:1.7}
+.answer{margin-top:72px;text-align:center;font-family:var(--serif);font-size:clamp(22px,2.6vw,30px);font-weight:700}
+.answer span{background:linear-gradient(transparent 64%,var(--sage-l) 64%)}
+
+/* reasons */
+.reasons{background:var(--paper);border-radius:48px;margin:0 20px}
+.reason{display:grid;grid-template-columns:120px 1fr 1fr;gap:48px;align-items:center;padding:44px 0;border-top:1px solid var(--line)}
+.reason:last-child{border-bottom:1px solid var(--line)}
+.reason .no{font-family:var(--en);font-style:italic;font-size:76px;line-height:1;color:var(--clay)}
+.reason h3{font-family:var(--serif);font-size:26px;font-weight:700;line-height:1.5}
+.reason p{color:var(--sub)}
+.reason .chip{display:inline-block;margin-top:12px;font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 14px;color:var(--sage-d);background:#fff}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:80px}
+.stat{text-align:center;padding:36px 20px;border-radius:24px;background:var(--sage-d);color:#fff}
+.stat b{font-family:var(--serif);font-size:56px;font-weight:800;line-height:1.1}
+.stat b small{font-size:20px;margin-left:4px}
+.stat p{font-size:13px;opacity:.85;margin-top:6px}
+
+/* plans */
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.plan{background:var(--paper);border:1px solid var(--line);border-radius:28px;padding:40px 32px;display:flex;flex-direction:column;transition:transform .5s var(--ease)}
+.plan:hover{transform:translateY(-6px)}
+.plan.pop{background:var(--ink);color:#fff;border-color:var(--ink);position:relative}
+.plan .tag{position:absolute;top:24px;right:24px;font-size:11px;font-weight:700;letter-spacing:.08em;background:var(--clay);color:#fff;border-radius:999px;padding:4px 12px}
+.plan .name{font-family:var(--en);font-style:italic;font-size:22px;color:var(--sage)}
+.plan.pop .name{color:var(--clay-l)}
+.plan h3{font-size:16px;margin-top:2px}
+.plan .price{font-family:var(--serif);font-size:46px;font-weight:800;margin:22px 0 2px;line-height:1.2}
+.plan .price small{font-family:var(--sans);font-size:14px;font-weight:500;opacity:.7}
+.plan .per{font-size:12px;opacity:.65}
+.plan ul{list-style:none;margin:26px 0 30px;font-size:14px;flex:1}
+.plan li{display:flex;gap:10px;padding:10px 0;border-top:1px solid rgba(127,127,127,.18)}
+.plan li svg{flex:none;margin-top:5px;color:var(--sage)}
+.plan.pop li svg{color:var(--clay-l)}
+.plan .btn{justify-content:space-between}
+.note{text-align:center;color:var(--sub);font-size:12px;margin-top:28px}
+
+/* flow */
+.flow{background:var(--sand)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps::before{content:"";position:absolute;top:34px;left:12%;right:12%;height:1px;background:repeating-linear-gradient(90deg,var(--sage) 0 6px,transparent 6px 12px)}
+.step{text-align:center;padding:0 18px;position:relative}
+.step .n{width:68px;height:68px;margin:0 auto 22px;border-radius:50%;background:var(--paper);border:1px solid var(--sage);display:grid;place-items:center;font-family:var(--en);font-style:italic;font-size:26px;color:var(--sage-d)}
+.step h3{font-size:17px;margin-bottom:6px}
+.step p{font-size:14px;color:var(--sub)}
+
+/* instructor */
+.inst{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
+.portrait{aspect-ratio:4/5;border-radius:999px 999px 28px 28px;background:linear-gradient(170deg,#efe4d6,#dcc8bb);position:relative;overflow:hidden}
+.portrait svg{position:absolute;inset:0;width:100%;height:100%}
+.inst blockquote{font-family:var(--serif);font-size:clamp(22px,2.4vw,28px);line-height:1.8;font-weight:700;margin:22px 0}
+.inst .who{color:var(--sub);font-size:14px}
+.inst .who b{color:var(--ink);font-size:18px;margin-right:10px}
+.cert{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.cert span{font-size:12px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:5px 14px;color:var(--sub)}
+
+/* voices */
+.voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.voice{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:34px 30px;position:relative}
+.voice::before{content:"“";position:absolute;top:6px;right:24px;font-family:var(--en);font-size:96px;color:var(--clay-l);line-height:1}
+.voice .stars{color:#d9a441;letter-spacing:3px;font-size:14px}
+.voice p{margin:14px 0 22px;font-size:15px}
+.voice .who{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--sub);padding-top:18px;border-top:1px solid var(--line)}
+.voice .av{width:40px;height:40px;border-radius:50%}
+
+/* faq */
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:64px}
+details{border-bottom:1px solid var(--line);padding:26px 0}
+details:first-child{border-top:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;gap:18px;align-items:center;font-weight:700;font-size:17px}
+summary::-webkit-details-marker{display:none}
+summary .q{font-family:var(--en);font-style:italic;font-size:26px;color:var(--clay);font-weight:400}
+summary .pm{margin-left:auto;width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .4s var(--ease),background .3s}
+details[open] summary .pm{transform:rotate(45deg);background:var(--ink);color:#fff;border-color:var(--ink)}
+details p{color:var(--sub);padding:14px 0 0 44px}
+
+/* cta */
+.cta{margin:0 20px 20px;border-radius:48px;background:var(--sage-d);color:#fff;position:relative;overflow:hidden;padding:120px 32px;text-align:center}
+.cta::before,.cta::after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.18)}
+.cta::before{width:620px;height:620px;left:-200px;top:-260px}
+.cta::after{width:480px;height:480px;right:-140px;bottom:-240px}
+.cta .eyebrow{color:var(--clay-l)}
+.cta h2{font-family:var(--serif);font-size:clamp(30px,4.4vw,54px);font-weight:800;line-height:1.45;margin:18px 0}
+.cta p{opacity:.8;margin-bottom:40px}
+footer{padding:48px 0 56px;color:var(--sub);font-size:12px}
+footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(36px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.js .rv.d1{transition-delay:.1s}.js .rv.d2{transition-delay:.2s}.js .rv.d3{transition-delay:.3s}
+
+@media (max-width:900px){
+  nav{display:none}
+  .wrap{padding:0 20px}
+  .hero{padding:24px 0 90px}
+  .hero .wrap,.sec-head,.inst,.faq-wrap{grid-template-columns:1fr}
+  .art{max-width:440px;width:100%;margin:20px auto 0}
+  .float.f1{left:-8px;width:200px}
+  .worries .grid{grid-template-columns:1fr 1fr}
+  .reason{grid-template-columns:70px 1fr;gap:10px 20px}
+  .reason .no{font-size:52px}
+  .reason h3{font-size:19px}
+  .reason h3 br{display:none}
+  .reason p{grid-column:2}
+  .stats,.plan-grid,.voice-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:40px}
+  .steps::before{display:none}
+  section{padding:96px 0}
+  .reasons,.cta{margin:0 10px;border-radius:32px}
+  .cta{margin-bottom:10px;padding:90px 22px}
+  .inst{gap:40px}
+}
+@media (max-width:480px){
+  .hero .meta{gap:18px}
+  .hero .meta b{font-size:22px}
+  .worries .grid{gap:12px}
+  .worry{padding:22px 16px 24px;border-radius:18px}
+  .worry .ic{width:44px;height:44px;margin-bottom:14px}
+  .worry p{font-size:14px}
+  .steps{grid-template-columns:1fr}
+}
+html.shot *,html.shot *::before,html.shot *::after{animation:none!important;transition:none!important}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<script>if(location.search.includes('shot')){document.documentElement.classList.add('shot')}else{document.documentElement.classList.add('js')}</script>
+<div class="grain"></div>
+<div class="notice">※ このページは制作見本です。店舗名・料金・お客様の声・講師などはすべて架空のものです。</div>
+
+<header id="hd">
+  <div class="wrap">
+    <a class="logo" href="#"><b>SORA</b><span>pilates studio</span></a>
+    <nav><a href="#reason">選ばれる理由</a><a href="#plan">料金</a><a href="#flow">体験の流れ</a><a href="#faq">よくある質問</a></nav>
+    <a class="btn sm" href="#cta">無料体験 <span class="arr"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Small group pilates — Since 2019</div>
+      <h1>
+        <span class="l"><span>がんばらなくていい。</span></span>
+        <span class="l"><span><em>からだが整う</em>、</span></span>
+        <span class="l"><span>はじめてのピラティス。</span></span>
+      </h1>
+      <p class="lead">1クラス最大4名の少人数制。運動が苦手な方も、からだが硬い方も。インストラクターが一人ひとりの呼吸と姿勢に寄り添います。</p>
+      <a class="btn" href="#cta">無料体験を予約する <span class="arr"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+      <div class="meta">
+        <div><b>3<small>分</small></b>駅から徒歩</div>
+        <div><b>4<small>名</small></b>1クラス最大</div>
+        <div><b>0<small>円</small></b>入会金・レンタル</div>
+      </div>
+    </div>
+    <div class="art" aria-hidden="true">
+      <div class="arch a1">
+        <svg viewBox="0 0 400 480" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="sun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".95"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+            <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9bea9"/><stop offset="1" stop-color="#7f9a86"/></linearGradient>
+          </defs>
+          <circle cx="250" cy="150" r="120" fill="url(#sun)"/>
+          <circle cx="250" cy="150" r="46" fill="#fff" opacity=".85"/>
+          <path d="M-20 330 C 80 280, 170 300, 240 330 S 380 360, 440 320 V 500 H -20 Z" fill="#cdd9cc" opacity=".8"/>
+          <path d="M-20 380 C 90 340, 200 360, 280 390 S 400 400, 440 380 V 500 H -20 Z" fill="url(#hill)"/>
+          <!-- botanical sprig -->
+          <g transform="translate(150 400) rotate(-12)">
+            <path d="M0 0 C 10 -80, 30 -170, 70 -250" stroke="#4f6857" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <g fill="#4f6857">
+              <path d="M8 -60 C -30 -70, -50 -100, -46 -128 C -14 -118, 4 -92, 8 -60Z" opacity=".85"/>
+              <path d="M16 -100 C 52 -104, 76 -130, 76 -160 C 44 -154, 22 -132, 16 -100Z" opacity=".7"/>
+              <path d="M30 -150 C -6 -166, -20 -198, -12 -224 C 16 -210, 30 -184, 30 -150Z" opacity=".8"/>
+              <path d="M46 -190 C 80 -200, 96 -226, 92 -252 C 64 -242, 50 -220, 46 -190Z" opacity=".65"/>
+            </g>
+          </g>
+          <g transform="translate(250 410) rotate(14)" opacity=".55">
+            <path d="M0 0 C 4 -50, 16 -100, 40 -140" stroke="#6f8b77" stroke-width="3" fill="none"/>
+            <path d="M8 -50 C 34 -54, 50 -74, 50 -96 C 26 -92, 12 -74, 8 -50Z" fill="#6f8b77"/>
+            <path d="M20 -92 C -4 -102, -14 -124, -10 -142 C 10 -134, 20 -116, 20 -92Z" fill="#6f8b77"/>
+          </g>
+        </svg>
+      </div>
+      <div class="arch a2">
+        <svg viewBox="0 0 200 260" preserveAspectRatio="xMidYMid slice">
+          <circle cx="100" cy="110" r="60" fill="#fff" opacity=".18"/>
+          <path d="M20 260 C 60 180, 140 180, 180 260Z" fill="#fff" opacity=".2"/>
+          <g stroke="#fff" stroke-opacity=".55" fill="none"><path d="M30 60 q70 -40 140 0"/><path d="M30 80 q70 -40 140 0"/><path d="M30 100 q70 -40 140 0"/></g>
+        </svg>
+      </div>
+      <div class="float f1">
+        <div class="t"><span>今日の空き枠</span><b>11/24(月)</b></div>
+        <div class="slots"><span class="x">07:00</span><span>10:00</span><span class="on">12:30</span><span>15:00</span><span class="x">19:00</span><span>20:30</span></div>
+      </div>
+      <div class="float f2">
+        <b>4.9</b><div><div class="stars">★★★★★</div><small>体験後アンケート(架空)</small></div>
+      </div>
+      <svg class="circle-text" viewBox="0 0 120 120"><defs><path id="c" d="M60 60 m-46 0 a46 46 0 1 1 92 0 a46 46 0 1 1 -92 0"/></defs><circle cx="60" cy="60" r="58" fill="#24232b"/><text font-family="Cormorant Garamond,serif" font-style="italic" font-size="13.5" fill="#fff" letter-spacing="2.6"><textPath href="#c">breathe · move · balance · repeat ·</textPath></text><path d="M52 60h16M62 54l6 6-6 6" stroke="#fff" stroke-width="2" fill="none"/></svg>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true"><div class="track">
+  <span>Breathe</span><span>Posture</span><span>Core</span><span>Balance</span><span>Flexibility</span><span>Mindful</span>
+  <span>Breathe</span><span>Posture</span><span>Core</span><span>Balance</span><span>Flexibility</span><span>Mindful</span>
+</div></div>
+
+<section class="worries">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><div class="eyebrow">Worries</div><h2 class="title">こんなお悩み、<br>ありませんか?</h2></div>
+      <p class="rv d1">忙しい毎日のなかで、気づけばからだは少しずつこわばっていきます。どれか一つでも当てはまったら、ピラティスがきっと役に立ちます。</p>
+    </div>
+    <div class="grid">
+      <div class="worry rv"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div><p>デスクワークで<br>肩や腰がガチガチ</p></div>
+      <div class="worry rv d1"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 8v8M18 8v8M3 10v4M21 10v4M6 12h12"/></svg></div><p>ジムに通っても<br>続かなかった</p></div>
+      <div class="worry rv d2"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="5" r="2"/><path d="M12 7c-1 4-1 8 1 14M9 11h6"/></svg></div><p>姿勢の悪さや<br>猫背が気になる</p></div>
+      <div class="worry rv d3"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></div><p>体力に自信がなく<br>運動が不安</p></div>
+    </div>
+    <p class="answer rv">そのお悩み、<span>呼吸と姿勢から</span>やさしく整えます。</p>
+  </div>
+</section>
+
+<section class="reasons" id="reason">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><div class="eyebrow">Reasons</div><h2 class="title">SORAが選ばれる<br>3つの理由</h2></div>
+      <p class="rv d1">はじめての方が安心して続けられるように。少人数・やさしいプログラム・通いやすさにこだわっています。</p>
+    </div>
+    <div class="reason rv"><div class="no">01</div><div><h3>最大4名の少人数制だから、<br>ひとりにしない。</h3></div><p>インストラクターの目がしっかり届く人数だから、はじめてでも正しい動きが身につきます。その日の体調にあわせた調整も。<br><span class="chip">はじめての方 9割以上</span></p></div>
+    <div class="reason rv"><div class="no">02</div><div><h3>運動が苦手でも、<br>からだが硬くても大丈夫。</h3></div><p>ゆっくりとした動きと呼吸が中心。強度は一人ひとりにあわせて調整するので、無理なく続けられます。<br><span class="chip">平均継続 14か月(架空)</span></p></div>
+    <div class="reason rv"><div class="no">03</div><div><h3>朝7時〜夜22時。<br>暮らしに組み込める。</h3></div><p>お仕事の前後にも通いやすい時間帯。予約・振替はスマホから24時間いつでもできます。<br><span class="chip">当日予約OK</span></p></div>
+    <div class="stats">
+      <div class="stat rv"><b data-count="4.9">0</b><p>体験後の満足度(5点満点・架空)</p></div>
+      <div class="stat rv d1"><b data-count="1200" data-suffix="名+">0</b><p>これまでの体験者数(架空)</p></div>
+      <div class="stat rv d2"><b data-count="87" data-suffix="%">0</b><p>「肩こりがラクになった」と回答(架空)</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><div class="eyebrow">Price</div><h2 class="title">料金プラン</h2></div>
+      <p class="rv d1">入会金・ウェア・マットのレンタルはすべて無料。はじめは月4回プランがいちばん人気です。</p>
+    </div>
+    <div class="plan-grid">
+      <div class="plan rv"><div class="name">Light</div><h3>月2回プラン</h3><div class="price">¥8,800<small> /月</small></div><div class="per">1回あたり ¥4,400</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>グループレッスン 月2回</li><li><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>まずは気軽に始めたい方に</li></ul>
+        <a class="btn sm" href="#cta">体験してみる <span class="arr"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span></a></div>
+      <div class="plan pop rv d1"><span class="tag">いちばん人気</span><div class="name">Standard</div><h3>月4回プラン</h3><div class="price">¥14,800<small> /月</small></div><div class="per">1回あたり ¥3,700</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>グループレッスン 月4回</li><li><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>週1回で変化を実感しやすい</li><li><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>3か月ごとの姿勢チェック付き</li></ul>
+        <a class="btn sm light" href="#cta">体験してみる <span class="arr"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span></a></div>
+      <div class="plan rv d2"><div class="name">Unlimited</div><h3>通い放題プラン</h3><div class="price">¥19,800<small> /月</small></div><div class="per">週3回なら1回 ¥1,650</div>
+        <ul><li><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>グループレッスン 通い放題</li><li><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6.5l2.5 2.5L10 3.5" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>しっかり変わりたい方に</li></ul>
+        <a class="btn sm" href="#cta">体験してみる <span class="arr"><svg width="10" height="10" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span></a></div>
+    </div>
+    <p class="note">※ 表示はすべて税込・架空の料金です。</p>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><div class="eyebrow">Flow</div><h2 class="title">無料体験の流れ</h2></div>
+      <p class="rv d1">所要時間は約60分。手ぶらでお越しください。</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="n">01</div><h3>Webで予約</h3><p>空き枠を選ぶだけ。<br>1分で完了します。</p></div>
+      <div class="step rv d1"><div class="n">02</div><h3>カウンセリング</h3><p>お悩みや目標を<br>ていねいにお聞きします。</p></div>
+      <div class="step rv d2"><div class="n">03</div><h3>体験レッスン</h3><p>45分のレッスンを<br>実際に体験できます。</p></div>
+      <div class="step rv d3"><div class="n">04</div><h3>ご入会は自由</h3><p>無理な勧誘は<br>一切ありません。</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap inst">
+    <div class="portrait rv" aria-hidden="true">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+        <circle cx="200" cy="190" r="70" fill="#b58f7f" opacity=".55"/>
+        <path d="M70 520 C 80 360, 320 360, 330 520Z" fill="#6f8b77" opacity=".75"/>
+        <circle cx="320" cy="90" r="30" fill="#fff" opacity=".5"/>
+      </svg>
+    </div>
+    <div>
+      <div class="eyebrow rv">Instructor</div>
+      <blockquote class="rv d1">「上手にできなくて大丈夫。<br>呼吸をひとつ深くするところから、<br>一緒にはじめましょう。」</blockquote>
+      <p class="who rv d2"><b>ミナミ アオイ</b>代表インストラクター(架空の人物)</p>
+      <div class="cert rv d3"><span>指導歴10年</span><span>ピラティス指導資格</span><span>産後ケア対応</span></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><div class="eyebrow">Voices</div><h2 class="title">お客様の声</h2></div>
+      <p class="rv d1">※ 見本用の架空の内容です。</p>
+    </div>
+    <div class="voice-grid">
+      <div class="voice rv"><div class="stars">★★★★★</div><p>ひどかった肩こりが、通い始めて1か月で朝ラクに。少人数なので質問しやすいのも嬉しいです。</p><div class="who"><span class="av" style="background:linear-gradient(135deg,#dfe7df,#9fb5a3)"></span>30代・会社員</div></div>
+      <div class="voice rv d1"><div class="stars">★★★★★</div><p>運動が本当に苦手でしたが、ゆっくりした動きなので続いています。ここが唯一続いた習い事です。</p><div class="who"><span class="av" style="background:linear-gradient(135deg,#f3ddd4,#c98d7b)"></span>40代・主婦</div></div>
+      <div class="voice rv d2"><div class="stars">★★★★★</div><p>夜22時まで開いているので、仕事帰りでも通えます。予約がスマホで完結するのも便利。</p><div class="who"><span class="av" style="background:linear-gradient(135deg,#ece3d6,#b8a48c)"></span>20代・看護師</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap faq-wrap">
+    <div class="rv"><div class="eyebrow">Q&amp;A</div><h2 class="title">よくある質問</h2></div>
+    <div class="rv d1">
+      <details open><summary><span class="q">Q.</span>からだが硬くても大丈夫ですか?<span class="pm">+</span></summary><p>はい、大丈夫です。からだが硬い方ほど変化を感じやすいのがピラティスの特徴です。</p></details>
+      <details><summary><span class="q">Q.</span>何を持っていけばいいですか?<span class="pm">+</span></summary><p>手ぶらでOKです。ウェア・マット・タオルはすべて無料でお貸しします。</p></details>
+      <details><summary><span class="q">Q.</span>体験のあと、勧誘されませんか?<span class="pm">+</span></summary><p>無理な勧誘は一切ありません。持ち帰ってゆっくりご検討いただけます。</p></details>
+      <details><summary><span class="q">Q.</span>男性も通えますか?<span class="pm">+</span></summary><p>現在は女性専用のスタジオとして運営しています。</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="cta" id="cta">
+  <div class="eyebrow">Free trial</div>
+  <h2>まずは無料体験から、<br>はじめてみませんか?</h2>
+  <p>今月の体験枠は残りわずかです(見本用の文言です)</p>
+  <a class="btn light" href="#">無料体験を予約する <span class="arr"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M2 6h8M7 3l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></span></a>
+</div>
+
+<footer><div class="wrap"><span>© SORA pilates studio(架空の店舗)</span><span>LP制作見本 — 制作:動画編集 ハル</span></div></footer>
+
+<script>
+const hd=document.getElementById('hd');
+addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>20),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);
+  e.target.querySelectorAll?.('[data-count]').forEach(count)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+function count(el){if(document.documentElement.classList.contains('shot'))return;const to=parseFloat(el.dataset.count),suf=el.dataset.suffix||'',dec=String(to).includes('.')?1:0,t0=performance.now();
+  (function f(now){const p=Math.min(1,(now-t0)/1400),v=to*(1-Math.pow(1-p,3));
+    el.innerHTML=(dec?v.toFixed(1):Math.round(v).toLocaleString())+(suf?'<small>'+suf+'</small>':'');if(p<1)requestAnimationFrame(f)})(t0)}
+document.querySelectorAll('.stat').forEach(s=>io.observe(s));
+if(document.documentElement.classList.contains('shot'))document.querySelectorAll('[data-count]').forEach(el=>{const v=el.dataset.count,suf=el.dataset.suffix||'';el.innerHTML=(v.includes('.')?v:Number(v).toLocaleString())+(suf?'<small>'+suf+'</small>':'')});
+</script>
+</body>
+</html>

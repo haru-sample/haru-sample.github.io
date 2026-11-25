@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SELLBRIDGE｜B2B営業代行</title>
+<meta name="description" content="いい商材があるのに、売る営業力がない。そんな企業の商材を、私たちがまるごと売ってきます。B2B営業代行。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== ここを変えると全体の色・リンクが変わる ===== */
+  :root{
+    --bg:#05070d;
+    --ink:#f3f1ec;
+    --muted:#9aa0ad;
+    --line:rgba(255,255,255,.12);
+    --accent:#ff6a2b;
+    --accent-2:#ffb347;
+    --line-green:#06c755;
+    --glass:rgba(10,13,22,.55);
+    --radius:18px;
+    --jp:"Zen Kaku Gothic New",system-ui,sans-serif;
+    --en:"Space Grotesk","Zen Kaku Gothic New",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--jp);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  #gl{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
+  .no-gl #gl{display:none}
+  .no-gl body{background:radial-gradient(circle at 60% 40%,#3a1a0c,var(--bg) 60%)}
+
+  /* intro flash */
+  #flash{position:fixed;inset:0;z-index:50;background:#000;pointer-events:none;transition:opacity 1.4s ease .15s}
+  #flash.go{opacity:0}
+
+  /* header */
+  header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:18px clamp(16px,4vw,48px);
+    background:linear-gradient(to bottom,rgba(5,7,13,.8),rgba(5,7,13,0));opacity:0;transform:translateY(-10px);transition:all .8s ease 1.4s}
+  .ready header{opacity:1;transform:none}
+  .logo{font-family:var(--en);font-weight:700;letter-spacing:.08em;font-size:18px;display:flex;align-items:center;gap:10px}
+  .logo i{width:14px;height:14px;background:var(--accent);transform:rotate(45deg);display:inline-block;box-shadow:0 0 18px var(--accent)}
+  nav{display:flex;gap:28px;align-items:center;font-size:13px;color:var(--muted)}
+  nav a:hover{color:var(--ink)}
+  nav .links{display:flex;gap:28px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:999px;font-weight:700;font-size:15px;padding:16px 28px;transition:transform .25s,box-shadow .25s,background .25s;white-space:nowrap}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-line{background:var(--line-green);color:#fff;box-shadow:0 10px 30px rgba(6,199,85,.35)}
+  .btn-line:hover{box-shadow:0 14px 40px rgba(6,199,85,.5)}
+  .btn-ghost{border:1px solid var(--line);background:rgba(255,255,255,.04);backdrop-filter:blur(8px)}
+  .btn-ghost:hover{border-color:var(--accent)}
+  .btn-sm{padding:10px 18px;font-size:13px}
+  .btn:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+  main{position:relative;z-index:1}
+  section{min-height:100vh;padding:120px clamp(16px,6vw,96px);display:flex;flex-direction:column;justify-content:center;position:relative}
+  .wrap{max-width:1180px;width:100%;margin:0 auto}
+  .eyebrow{font-family:var(--en);font-size:12px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;display:flex;align-items:center;gap:12px;margin-bottom:22px}
+  .eyebrow::before{content:"";width:28px;height:1px;background:var(--accent)}
+  h1,h2{font-weight:900;letter-spacing:-.01em;line-height:1.25}
+  h2{font-size:clamp(30px,4.6vw,58px);margin-bottom:28px}
+  .lead{color:#c9ccd4;font-size:clamp(15px,1.3vw,17px);max-width:560px}
+  .accent{color:var(--accent)}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1;transform:none}
+  .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+  /* HERO */
+  #hero{justify-content:flex-end;padding-bottom:12vh}
+  #hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(5,7,13,.85) 0%,rgba(5,7,13,.35) 45%,transparent 70%),linear-gradient(to right,rgba(5,7,13,.6),transparent 60%)}
+  #hero .wrap{position:relative}
+  #hero .lead{text-shadow:0 2px 12px rgba(0,0,0,.8)}
+  #hero h1{font-size:clamp(40px,8vw,112px);margin:10px 0 28px}
+  #hero h1 .l{display:block;overflow:hidden}
+  #hero h1 .l span{display:inline-block;transform:translateY(110%);transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+  .ready #hero h1 .l span{transform:none}
+  .ready #hero h1 .l:nth-child(2) span{transition-delay:.12s}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:36px}
+  .hero-fade{opacity:0;transition:opacity 1s ease 1.1s}
+  .ready .hero-fade{opacity:1}
+  .scroll-hint{position:absolute;right:clamp(16px,4vw,48px);bottom:40px;font-family:var(--en);font-size:11px;letter-spacing:.3em;color:var(--muted);writing-mode:vertical-rl;display:flex;align-items:center;gap:12px}
+  .scroll-hint::after{content:"";width:1px;height:60px;background:linear-gradient(var(--accent),transparent);animation:drip 2s infinite}
+  @keyframes drip{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+  /* PROBLEM */
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,80px);align-items:center}
+  .pains{list-style:none;margin-top:32px;display:grid;gap:12px}
+  .pains li{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border:1px solid var(--line);border-radius:14px;background:var(--glass);backdrop-filter:blur(10px)}
+  .pains li b{font-family:var(--en);color:#6f8cff;font-size:13px;padding-top:2px}
+
+  /* image slot (ChatGPT生成画像をimages/に入れると表示される) */
+  .ph{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:
+      repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 12px,transparent 12px 24px),rgba(12,15,24,.7);aspect-ratio:4/5}
+  .ph.wide{aspect-ratio:16/10}
+  .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+  .ph span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;font-family:var(--en);font-size:12px;color:var(--muted);letter-spacing:.05em;padding:20px}
+  .ph::after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(to top,rgba(5,7,13,.55),transparent 50%);pointer-events:none}
+
+  /* SERVICE */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+  .card{padding:28px 24px;border-radius:var(--radius);border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(14px);transition:border-color .3s,transform .3s}
+  .card:hover{border-color:rgba(255,106,43,.6);transform:translateY(-4px)}
+  .card .no{font-family:var(--en);font-size:13px;color:var(--accent);margin-bottom:28px;display:block}
+  .card h3{font-size:19px;margin-bottom:10px;line-height:1.5}
+  .card p{font-size:14px;color:var(--muted)}
+  .service-head{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+
+  /* FLOW */
+  .flow{list-style:none;margin-top:48px;border-left:1px solid var(--line);max-width:640px}
+  .flow li{position:relative;padding:0 0 36px 40px}
+  .flow li::before{content:"";position:absolute;left:-6px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 14px var(--accent)}
+  .flow .n{font-family:var(--en);font-size:12px;color:var(--accent);letter-spacing:.2em}
+  .flow h3{font-size:21px;margin:4px 0 6px}
+  .flow p{color:var(--muted);font-size:14px}
+  #flow .wrap{display:flex;justify-content:flex-end}
+  #flow .inner{max-width:640px;padding:48px;border-radius:24px;background:linear-gradient(135deg,rgba(10,13,22,.75),rgba(10,13,22,.35));backdrop-filter:blur(12px);border:1px solid var(--line)}
+
+  /* STRENGTH */
+  .str{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+  .str article{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(12px)}
+  .str .ph{border:0;border-radius:0;aspect-ratio:4/3}
+  .str .body{padding:24px}
+  .str h3{font-size:20px;margin-bottom:8px}
+  .str p{font-size:14px;color:var(--muted)}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:20px}
+  .stat{padding:24px;border-top:1px solid var(--accent)}
+  .stat strong{font-family:var(--en);font-size:clamp(36px,4vw,56px);display:block;line-height:1.1}
+  .stat small{color:var(--muted);font-size:13px}
+
+  /* CTA */
+  #contact{align-items:center;text-align:center}
+  #contact .wrap{padding:56px 24px;border-radius:28px;background:radial-gradient(ellipse at center,rgba(5,7,13,.78),rgba(5,7,13,.35) 70%,transparent);text-shadow:0 2px 20px rgba(0,0,0,.6)}
+  #contact h2{font-size:clamp(32px,5.5vw,72px)}
+  #contact .lead{margin:0 auto 40px}
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .cta-row .btn{padding:20px 36px;font-size:16px}
+  .note{margin-top:20px;font-size:12px;color:var(--muted)}
+
+  footer{position:relative;z-index:1;padding:40px clamp(16px,6vw,96px);border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);background:rgba(5,7,13,.85)}
+
+  /* progress rail */
+  .rail{position:fixed;left:clamp(16px,2vw,28px);top:50%;transform:translateY(-50%);z-index:15;display:flex;flex-direction:column;gap:14px;opacity:0;transition:opacity .8s 1.6s}
+  .ready .rail{opacity:1}
+  .rail a{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);transition:all .3s}
+  .rail a.on{background:var(--accent);box-shadow:0 0 10px var(--accent);transform:scale(1.5)}
+
+  .float-line{display:none}
+
+  @media (max-width:900px){
+    nav .links{display:none}
+    .split,.service-head{grid-template-columns:1fr}
+    .cards{grid-template-columns:1fr 1fr}
+    .str,.stats{grid-template-columns:1fr}
+    #flow .inner{padding:28px 22px}
+    .rail{display:none}
+    .float-line{display:flex;position:fixed;left:16px;right:16px;bottom:16px;z-index:30}
+    .float-line .btn{width:100%}
+    footer{padding-bottom:100px}
+  }
+  @media (max-width:560px){
+    .cards{grid-template-columns:1fr}
+    .scroll-hint{display:none}
+    header .btn{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .rv,#hero h1 .l span,header,.hero-fade{transition:none!important;opacity:1!important;transform:none!important}
+    #flash{display:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="flash"></div>
+
+<header>
+  <a href="#hero" class="logo"><i></i>SELLBRIDGE</a>
+  <nav>
+    <span class="links">
+      <a href="#problem">課題</a><a href="#service">サービス</a><a href="#flow">流れ</a><a href="#strength">強み</a>
+    </span>
+    <!-- 公式LINEのURLに差し替え -->
+    <a class="btn btn-line btn-sm" href="https://lin.ee/XXXXXXX" target="_blank" rel="noopener">LINEで相談</a>
+  </nav>
+</header>
+
+<nav class="rail" aria-label="セクション">
+  <a href="#hero" aria-label="トップ"></a><a href="#problem" aria-label="課題"></a><a href="#service" aria-label="サービス"></a>
+  <a href="#flow" aria-label="流れ"></a><a href="#strength" aria-label="強み"></a><a href="#contact" aria-label="お問い合わせ"></a>
+</nav>
+
+<main>
+  <!-- 0 HERO -->
+  <section id="hero" data-ch>
+    <div class="wrap">
+      <p class="eyebrow hero-fade">B2B Sales Outsourcing</p>
+      <h1><span class="l"><span>その商材、</span></span><span class="l"><span>僕らが<span class="accent">売ってきます。</span></span></span></h1>
+      <p class="lead hero-fade">いい商材があるのに、売る人がいない。<br>戦略設計からアポ獲得・商談・クロージングまで、あなたの営業部をまるごと引き受けます。</p>
+      <div class="hero-meta hero-fade">
+        <a class="btn btn-line" href="https://lin.ee/XXXXXXX" target="_blank" rel="noopener">公式LINEで無料相談</a>
+        <a class="btn btn-ghost" href="#contact">お問い合わせ</a>
+      </div>
+    </div>
+    <div class="scroll-hint hero-fade">SCROLL</div>
+  </section>
+
+  <!-- 1 PROBLEM -->
+  <section id="problem" data-ch>
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow rv">Problem</p>
+        <h2 class="rv d1">商材は、最高。<br>なのに、<span style="color:#6f8cff;white-space:nowrap">届いていない。</span></h2>
+        <p class="lead rv d2">どれだけ良いものでも、売る人がいなければ存在しないのと同じ。こんな悩み、ありませんか？</p>
+        <ul class="pains">
+          <li class="rv d2"><b>01</b>営業人員が足りず、新規開拓まで手が回らない</li>
+          <li class="rv d3"><b>02</b>営業の採用・育成にお金も時間もかけられない</li>
+          <li class="rv d3"><b>03</b>社長がずっとトッププレイヤーから抜けられない</li>
+          <li class="rv d4"><b>04</b>そもそも「誰に売ればいいか」が定まっていない</li>
+        </ul>
+      </div>
+      <figure class="ph rv d2">
+        <img src="images/problem.jpg" alt="良い商材を前に悩む経営者" onerror="this.remove()">
+        <span>images/problem.jpg<br>（ChatGPTで生成）</span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 2 SERVICE -->
+  <section id="service" data-ch>
+    <div class="wrap">
+      <div class="service-head">
+        <div>
+          <p class="eyebrow rv">Service</p>
+          <h2 class="rv d1">あなたの営業部を、<br><span class="accent">まるごと</span>。</h2>
+        </div>
+        <p class="lead rv d2">私たちは「代わりに電話をかける会社」ではありません。商材を深く理解し、売れる相手と売れる言葉を設計して、成果まで責任を持って走り切ります。</p>
+      </div>
+      <div class="cards">
+        <div class="card rv d1"><span class="no">01</span><h3>ターゲット設計<br>リスト作成</h3><p>商材の強みから「本当に買う企業」を逆算し、攻めるリストをつくります。</p></div>
+        <div class="card rv d2"><span class="no">02</span><h3>アポイント獲得</h3><p>テレアポ・フォーム営業・メールを組み合わせ、決裁者との商談を生み出します。</p></div>
+        <div class="card rv d3"><span class="no">03</span><h3>商談・<br>クロージング</h3><p>御社の名前で商談に入り、受注まで。必要に応じて同席・引き継ぎも可能です。</p></div>
+        <div class="card rv d4"><span class="no">04</span><h3>レポート・改善</h3><p>毎週の数値レポートと現場の声を共有。トークもターゲットも磨き続けます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 FLOW -->
+  <section id="flow" data-ch>
+    <div class="wrap">
+      <div class="inner">
+        <p class="eyebrow rv">Flow</p>
+        <h2 class="rv d1">相談から営業開始まで、<br>最短<span class="accent">2週間</span>。</h2>
+        <ol class="flow">
+          <li class="rv d1"><span class="n">STEP 01</span><h3>LINEで無料相談</h3><p>まずは商材のことを気軽に送ってください。</p></li>
+          <li class="rv d2"><span class="n">STEP 02</span><h3>商材ヒアリング</h3><p>強み・価格・既存顧客を伺い、売れるポイントを掘り起こします。</p></li>
+          <li class="rv d2"><span class="n">STEP 03</span><h3>営業戦略のご提案</h3><p>ターゲット・チャネル・トーク・目標数値をまとめてご提案。</p></li>
+          <li class="rv d3"><span class="n">STEP 04</span><h3>営業スタート</h3><p>専任チームが動き出します。</p></li>
+          <li class="rv d4"><span class="n">STEP 05</span><h3>毎週レポート＆改善</h3><p>数字を見ながら一緒に勝ちパターンをつくります。</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 STRENGTH -->
+  <section id="strength" data-ch>
+    <div class="wrap">
+      <p class="eyebrow rv">Why us</p>
+      <h2 class="rv d1">売れる理由が、<br>ちゃんとある。</h2>
+      <div class="str">
+        <article class="rv d1">
+          <figure class="ph"><img src="images/strength-1.jpg" alt="商談中の営業担当" onerror="this.remove()"><span>images/strength-1.jpg</span></figure>
+          <div class="body"><h3>成果にコミットする</h3><p>件数ではなく、受注と売上をゴールに置いて動きます。</p></div>
+        </article>
+        <article class="rv d2">
+          <figure class="ph"><img src="images/strength-2.jpg" alt="戦略を練るチーム" onerror="this.remove()"><span>images/strength-2.jpg</span></figure>
+          <div class="body"><h3>商材理解に時間をかける</h3><p>売る前に、まず誰よりも商材のファンになる。それが一番の近道です。</p></div>
+        </article>
+        <article class="rv d3">
+          <figure class="ph"><img src="images/strength-3.jpg" alt="数値レポートを確認する様子" onerror="this.remove()"><span>images/strength-3.jpg</span></figure>
+          <div class="body"><h3>スピードと透明性</h3><p>最短2週間で稼働。活動の中身はすべて数字で見える化します。</p></div>
+        </article>
+      </div>
+      <!-- 実績数値は本物の数字に差し替え -->
+      <div class="stats">
+        <div class="stat rv d1"><strong>120<span class="accent">社</span></strong><small>支援実績</small></div>
+        <div class="stat rv d2"><strong>18<span class="accent">%</span></strong><small>アポ獲得率</small></div>
+        <div class="stat rv d3"><strong>35<span class="accent">億円</span></strong><small>累計受注額</small></div>
+      </div>
+      <p style="margin-top:14px;font-size:12px;color:var(--muted)">※ 制作見本用の架空の数値です。</p>
+    </div>
+  </section>
+
+  <!-- 5 CONTACT -->
+  <section id="contact" data-ch>
+    <div class="wrap">
+      <p class="eyebrow rv" style="justify-content:center">Contact</p>
+      <h2 class="rv d1">あなたの商材、<br><span class="accent">聞かせてください。</span></h2>
+      <p class="lead rv d2">「本当に売れるかな？」という段階でも大丈夫。<br>商材の可能性を、まずは無料で一緒に見てみましょう。</p>
+      <div class="cta-row rv d3">
+        <a class="btn btn-line" href="https://lin.ee/XXXXXXX" target="_blank" rel="noopener">公式LINEで無料相談する</a>
+        <!-- 問い合わせフォームURLに差し替え -->
+        <a class="btn btn-ghost" href="mailto:info@example.com">メールでお問い合わせ</a>
+      </div>
+      <p class="note rv d4">ご相談・お見積りは無料です。しつこい営業はしません。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>© SELLBRIDGE(架空の会社)|制作見本:動画編集 ハル</span>
+  <span>B2B営業代行 / 新規開拓 / アポイント獲得 / 商談代行</span>
+</footer>
+
+<div class="float-line"><a class="btn btn-line" href="https://lin.ee/XXXXXXX" target="_blank" rel="noopener">公式LINEで無料相談</a></div>
+
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const mobile = matchMedia('(max-width: 900px)').matches;
+const html = document.documentElement;
+
+// ---------- DOM: reveal ----------
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+const startDom = () => { html.classList.add('ready'); document.getElementById('flash').classList.add('go'); };
+
+let renderer;
+try {
+  renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), antialias: true, powerPreference: 'high-performance' });
+} catch (e) { html.classList.add('no-gl'); startDom(); }
+
+if (renderer) {
+const V3 = THREE.Vector3;
+const lerp = (a, b, t) => a + (b - a) * t;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const ease = t => t * t * (3 - 2 * t);
+const outCubic = t => 1 - Math.pow(1 - t, 3);
+const outBack = t => { const c = 1.7; return 1 + (c + 1) * Math.pow(t - 1, 3) + c * Math.pow(t - 1, 2); };
+let seed = 11;
+const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+
+renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.25 : 1.5));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+
+const scene = new THREE.Scene();
+const fogC = new THREE.Color(0x080b16);
+scene.background = fogC;
+const camera = new THREE.PerspectiveCamera(42, innerWidth / innerHeight, .1, 600);
+camera.position.set(0, 60, 90);
+const world = new THREE.Group(); scene.add(world);
+
+const ACCENT = new THREE.Color(0xff6a2b);
+const WARM = new THREE.Color(1.0, .55, .2);
+
+// ---------- 建物シェーダー（窓の明かりがスクロールで灯る） ----------
+const cityVert = /* glsl */`
+  attribute vec3 aSize; attribute float aOrder; attribute float aSeed;
+  uniform float uRise;
+  varying vec3 vLocal; varying vec3 vSize; varying float vOrder; varying float vSeed; varying vec3 vN; varying float vDepth; varying float vDist;
+  void main(){
+    vLocal = position; vSize = aSize; vOrder = aOrder; vSeed = aSeed; vN = normal;
+    vec3 c = instanceMatrix[3].xyz; float d = length(c.xz); vDist = d;
+    float g = clamp((uRise - d) / 14.0, 0.0, 1.0); g = 1.0 - pow(1.0 - g, 3.0);
+    vec3 p = position; p.y *= max(g, 0.001);
+    vec4 mv = viewMatrix * modelMatrix * instanceMatrix * vec4(p, 1.0);
+    vDepth = -mv.z; gl_Position = projectionMatrix * mv;
+  }`;
+const cityFrag = /* glsl */`
+  uniform float uLit; uniform vec3 uWin; uniform vec3 uBase; uniform vec3 uFogC; uniform float uFog;
+  uniform float uWave; uniform float uWaveAmp; uniform float uTime;
+  varying vec3 vLocal; varying vec3 vSize; varying float vOrder; varying float vSeed; varying vec3 vN; varying float vDepth; varying float vDist;
+  float hash(vec3 p){ return fract(sin(dot(p, vec3(12.9898, 78.233, 37.719))) * 43758.5453); }
+  void main(){
+    vec3 n = abs(vN);
+    vec3 col = uBase;
+    float wave = uWaveAmp * smoothstep(10.0, 0.0, abs(vDist - uWave));
+    if (n.y < 0.5) {
+      float side = n.x > 0.5 ? vLocal.z * vSize.z : vLocal.x * vSize.x;
+      float sideId = n.x > 0.5 ? sign(vN.x) : 2.0 + sign(vN.z);
+      vec2 g = vec2(side / 0.42, vLocal.y * vSize.y / 0.55);
+      vec2 cell = floor(g); vec2 f = fract(g);
+      float win = step(0.2, f.x) * step(f.x, 0.78) * step(0.22, f.y) * step(f.y, 0.74) * step(1.0, cell.y);
+      float amt = clamp(uLit * 1.6 - vOrder * 0.6, 0.0, 1.0);
+      float r = hash(vec3(cell, vSeed * 91.0 + sideId));
+      float on = step(r, amt * 0.55 + 0.02);
+      float flick = 0.85 + 0.15 * sin(uTime * 2.0 + r * 40.0);
+      vec3 wc = mix(uWin, vec3(1.0, 0.86, 0.62), step(0.72, hash(vec3(cell.yx, vSeed))));
+      vec3 offC = vec3(0.035, 0.05, 0.09);
+      vec3 w = mix(offC, wc * 1.25 * flick, on) + uWin * wave * 2.2;
+      col = mix(col * (0.55 + 0.45 * vLocal.y), w, win);
+      float edge = smoothstep(0.46, 0.5, abs(n.x > 0.5 ? vLocal.z : vLocal.x));
+      col += vec3(0.05, 0.07, 0.12) * edge;
+    } else {
+      col = uBase * 1.5 + uWin * wave * 0.6;
+    }
+    float fogF = 1.0 - exp(-uFog * uFog * vDepth * vDepth);
+    gl_FragColor = vec4(mix(col, uFogC, fogF), 1.0);
+  }`;
+const makeCityMat = (win) => new THREE.ShaderMaterial({
+  uniforms: {
+    uLit: { value: 0 }, uWin: { value: new THREE.Color(win) }, uBase: { value: new THREE.Color(0x0a0f1e) },
+    uFogC: { value: fogC }, uFog: { value: .018 }, uRise: { value: 0 }, uWave: { value: -100 }, uWaveAmp: { value: 0 }, uTime: { value: 0 }
+  }, vertexShader: cityVert, fragmentShader: cityFrag
+});
+
+// ---------- 街のレイアウト ----------
+const PITCH = 8, STREET = 2, N = mobile ? 6 : 8;
+const lots = [];
+for (let bx = -N; bx < N; bx++) for (let bz = -N; bz < N; bz++) {
+  const cx = (bx + .5) * PITCH, cz = (bz + .5) * PITCH;
+  if (Math.hypot(cx, cz) < 7) continue; // 中央は本社タワーの広場
+  const inner = PITCH - STREET, lot = inner / 2;
+  if (rnd() < .18) { lots.push([cx, cz, inner * (.72 + rnd() * .2), inner * (.72 + rnd() * .2)]); continue; }
+  for (let i = 0; i < 2; i++) for (let j = 0; j < 2; j++) {
+    if (rnd() < .08) continue;
+    lots.push([cx + (i - .5) * lot, cz + (j - .5) * lot, lot * (.6 + rnd() * .3), lot * (.6 + rnd() * .3)]);
+  }
+}
+const maxD = N * PITCH * 1.42;
+const BN = lots.length;
+const bGeo = new THREE.BoxGeometry(1, 1, 1).translate(0, .5, 0);
+const aSize = new Float32Array(BN * 3), aOrder = new Float32Array(BN), aSeed = new Float32Array(BN);
+const cityMat = makeCityMat(WARM);
+const city = new THREE.InstancedMesh(bGeo, cityMat, BN);
+const m4 = new THREE.Matrix4(), q0 = new THREE.Quaternion();
+const tops = [];
+lots.forEach(([x, z, w, d], i) => {
+  const dist = Math.hypot(x, z);
+  const h = 1.5 + Math.pow(rnd(), 2.2) * 22 * (1 - dist / maxD * .75) + (dist < 22 ? rnd() * 7 : 0);
+  m4.compose(new V3(x, 0, z), q0, new V3(w, h, d)); city.setMatrixAt(i, m4);
+  aSize.set([w, h, d], i * 3); aOrder[i] = clamp(dist / maxD * .8 + rnd() * .25); aSeed[i] = rnd();
+  tops.push({ p: new V3(x, h, z), dist, h });
+});
+bGeo.setAttribute('aSize', new THREE.InstancedBufferAttribute(aSize, 3));
+bGeo.setAttribute('aOrder', new THREE.InstancedBufferAttribute(aOrder, 1));
+bGeo.setAttribute('aSeed', new THREE.InstancedBufferAttribute(aSeed, 1));
+city.frustumCulled = false;
+world.add(city);
+
+// ---------- 本社タワー =「あなたの商材」 ----------
+const TOWER_H = 30;
+const towerG = new THREE.Group(); world.add(towerG);
+const tGeo = new THREE.BoxGeometry(1, 1, 1).translate(0, .5, 0);
+tGeo.setAttribute('aSize', new THREE.InstancedBufferAttribute(new Float32Array([3.4, TOWER_H, 3.4]), 3));
+tGeo.setAttribute('aOrder', new THREE.InstancedBufferAttribute(new Float32Array([0]), 1));
+tGeo.setAttribute('aSeed', new THREE.InstancedBufferAttribute(new Float32Array([.5]), 1));
+const towerMat = makeCityMat(ACCENT); towerMat.uniforms.uRise.value = 1e4; towerMat.uniforms.uBase.value.set(0x121828);
+const tower = new THREE.InstancedMesh(tGeo, towerMat, 1);
+tower.setMatrixAt(0, m4.compose(new V3(), q0, new V3(3.4, TOWER_H, 3.4))); towerG.add(tower);
+const spire = new THREE.Mesh(new THREE.CylinderGeometry(.06, .3, 6, 8).translate(0, TOWER_H + 3, 0), new THREE.MeshBasicMaterial({ color: 0x2a3348 }));
+towerG.add(spire);
+const beaconMat = new THREE.MeshBasicMaterial({ color: ACCENT.clone() });
+const beacon = new THREE.Mesh(new THREE.SphereGeometry(.55, 24, 16), beaconMat); beacon.position.y = TOWER_H + 6.2; towerG.add(beacon);
+const crownMat = new THREE.MeshBasicMaterial({ color: ACCENT.clone() });
+const crown = new THREE.Mesh(new THREE.BoxGeometry(3.6, .18, 3.6), crownMat); crown.position.y = TOWER_H; towerG.add(crown);
+const beamMat = new THREE.MeshBasicMaterial({ color: 0xff8a4d, transparent: true, opacity: .1, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
+const beam = new THREE.Mesh(new THREE.CylinderGeometry(.35, 2.2, 160, 24, 1, true), beamMat); beam.position.y = TOWER_H + 6 + 80; world.add(beam);
+
+// ---------- 地面（道路のライン） ----------
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(700, 700).rotateX(-Math.PI / 2), new THREE.ShaderMaterial({
+  uniforms: { uFogC: { value: fogC }, uFog: { value: .018 }, uLine: { value: new THREE.Color(0xff8a4d) }, uPitch: { value: PITCH } },
+  vertexShader: `varying vec3 vW; varying float vDepth; void main(){ vec4 wp = modelMatrix * vec4(position,1.); vW = wp.xyz; vec4 mv = viewMatrix * wp; vDepth = -mv.z; gl_Position = projectionMatrix * mv; }`,
+  fragmentShader: `uniform vec3 uFogC; uniform float uFog; uniform vec3 uLine; uniform float uPitch; varying vec3 vW; varying float vDepth;
+    void main(){
+      vec2 f = fract(vW.xz / uPitch); vec2 dd = min(f, 1.0 - f) * uPitch; float d = min(dd.x, dd.y);
+      float road = 1.0 - smoothstep(0.9, 1.1, d);
+      vec3 col = mix(vec3(0.012, 0.016, 0.03), vec3(0.028, 0.034, 0.055), road);
+      col += uLine * 0.12 * (1.0 - smoothstep(0.0, 0.07, d));
+      float fogF = 1.0 - exp(-uFog * uFog * vDepth * vDepth);
+      gl_FragColor = vec4(mix(col, uFogC, fogF), 1.0);
+    }`
+}));
+world.add(ground);
+
+// 衝撃波リング（オープニングの「ボーン」）
+const shock = new THREE.Mesh(new THREE.RingGeometry(.97, 1, 200).rotateX(-Math.PI / 2), new THREE.MeshBasicMaterial({ color: 0xffc08a, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }));
+shock.position.y = .3; world.add(shock);
+
+// ---------- 車の光（交通） ----------
+const TN = mobile ? 220 : 520, L = N * PITCH * 2;
+const cars = [];
+const carMat = new THREE.MeshBasicMaterial({ transparent: true, blending: THREE.AdditiveBlending, depthWrite: false });
+const carMesh = new THREE.InstancedMesh(new THREE.BoxGeometry(.14, .08, 1.3), carMat, TN);
+const cHead = new THREE.Color(1.6, 1.4, 1.1), cTail = new THREE.Color(1.6, .25, .12);
+for (let i = 0; i < TN; i++) {
+  const dir = rnd() < .5 ? 1 : -1, k = Math.floor(rnd() * (2 * N + 1)) - N;
+  cars.push({ axis: rnd() < .5 ? 0 : 1, lane: k * PITCH + dir * .45, speed: (5 + rnd() * 7) * dir, phase: rnd() * L });
+  carMesh.setColorAt(i, dir > 0 ? cHead : cTail);
+}
+carMesh.frustumCulled = false; world.add(carMesh);
+const qX = new THREE.Quaternion().setFromAxisAngle(new V3(0, 1, 0), Math.PI / 2);
+
+// ---------- 営業の動線（タワー → 顧客企業へ光の弧） ----------
+const AN = mobile ? 18 : 32;
+const cand = tops.filter(t => t.dist > 14 && t.h > 3).sort(() => rnd() - .5).slice(0, AN).sort((a, b) => a.dist - b.dist);
+const arcMat = new THREE.LineBasicMaterial({ color: 0xff8a4d, transparent: true, opacity: .85, blending: THREE.AdditiveBlending, depthWrite: false });
+const SEG = 64;
+const arcs = cand.map((t, i) => {
+  const a = new V3(0, TOWER_H + 1, 0), b = t.p.clone().add(new V3(0, .15, 0));
+  const mid = a.clone().lerp(b, .5); mid.y += t.dist * .35 + 8;
+  const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+  const line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(SEG)), arcMat);
+  line.geometry.setDrawRange(0, 0); line.frustumCulled = false; world.add(line);
+  return { curve, line, ord: i / AN };
+});
+const markMesh = new THREE.InstancedMesh(new THREE.OctahedronGeometry(.5, 0), new THREE.MeshBasicMaterial({ color: 0xffb070 }), AN);
+markMesh.frustumCulled = false; world.add(markMesh);
+const pktPos = new Float32Array(AN * 3);
+const pktGeo = new THREE.BufferGeometry(); pktGeo.setAttribute('position', new THREE.BufferAttribute(pktPos, 3));
+const dotTex = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d');
+  const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, '#fff'); gr.addColorStop(.3, 'rgba(255,255,255,.6)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+  g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
+const pktMat = new THREE.PointsMaterial({ size: 1.6, map: dotTex, color: 0xffd2a8, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+const packets = new THREE.Points(pktGeo, pktMat); packets.frustumCulled = false; world.add(packets);
+
+// 星
+const SN = 700, sPos = new Float32Array(SN * 3);
+for (let i = 0; i < SN; i++) { const th = rnd() * Math.PI * 2, ph = rnd() * 1.2; const r = 300;
+  sPos[i * 3] = r * Math.sin(ph) * Math.cos(th); sPos[i * 3 + 1] = 40 + r * Math.cos(ph) * .6; sPos[i * 3 + 2] = r * Math.sin(ph) * Math.sin(th); }
+const sGeo = new THREE.BufferGeometry(); sGeo.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
+const stars = new THREE.Points(sGeo, new THREE.PointsMaterial({ size: 1.4, sizeAttenuation: false, color: 0xbfcfff, transparent: true, opacity: .55, fog: false }));
+scene.add(stars);
+
+// ---------- post ----------
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), .9, .55, .22);
+composer.addPass(bloom); composer.addPass(new OutputPass());
+
+// ---------- chapter ledger（セクションごとの街の状態） ----------
+const C = [
+  // hero: 夜の街の上空から本社タワーを望む
+  { cam: [0, 16, 50],   tgt: [0, 11, 0],  lit: .1,  arcs: 0,  glow: 1.0, traffic: 1,   fog: .016, fogC: 0x080b16, beam: .7, spin: .012 },
+  // problem: 地上。タワーは暗く、街は眠っている
+  { cam: [10, 2.2, 15], tgt: [0, 16, 0],  lit: 0,   arcs: 0,  glow: .06, traffic: .2,  fog: .04,  fogC: 0x04070f, beam: 0,  spin: 0 },
+  // service: 真上へ。タワーから営業の線が伸び始める
+  { cam: [0, 62, 44],   tgt: [0, 0, -4],  lit: .22, arcs: .5, glow: .9,  traffic: .8,  fog: .011, fogC: 0x080b16, beam: .5, spin: .01 },
+  // flow: 横に回り込み、すべての線がつながる
+  { cam: [-54, 20, 16], tgt: [0, 7, 0],   lit: .5,  arcs: 1,  glow: 1.0, traffic: 1,   fog: .011, fogC: 0x0a0b16, beam: .7, spin: .015 },
+  // strength: 街全体を俯瞰。ほぼすべての窓が灯る
+  { cam: [34, 92, 74],  tgt: [0, 0, 0],   lit: .85,   arcs: 1,  glow: 1.1, traffic: 1,   fog: .0075, fogC: 0x0c0a14, beam: .8, spin: .02 },
+  // contact: タワーの頂上へ寄る
+  { cam: [0, 36, 24],   tgt: [0, 27, 0],  lit: .7,   arcs: 1,  glow: 1.6, traffic: 1,   fog: .013, fogC: 0x120a0c, beam: 1,  spin: .03 },
+].map(c => ({ ...c, fogCC: new THREE.Color(c.fogC), camV: new V3(...c.cam), tgtV: new V3(...c.tgt) }));
+
+// ---------- scroll conductor ----------
+const sections = [...document.querySelectorAll('[data-ch]')];
+const railLinks = [...document.querySelectorAll('.rail a')];
+let anchors = [];
+const measure = () => { anchors = sections.map(s => s.offsetTop + s.offsetHeight / 2); };
+const progressFromScroll = () => {
+  const y = scrollY + innerHeight / 2;
+  if (y <= anchors[0]) return 0;
+  for (let i = 0; i < anchors.length - 1; i++) if (y < anchors[i + 1]) return i + (y - anchors[i]) / (anchors[i + 1] - anchors[i]);
+  return anchors.length - 1;
+};
+measure(); document.fonts?.ready.then(measure); addEventListener('load', measure);
+let target = 0, smooth = 0;
+
+const S = {}; const camT = new V3(), lookT = new V3();
+function resolve(p) {
+  const i = Math.min(Math.floor(p), C.length - 2), t = ease(clamp(p - i));
+  const a = C[i], b = C[i + 1];
+  for (const k of ['lit', 'arcs', 'glow', 'traffic', 'fog', 'beam', 'spin']) S[k] = lerp(a[k], b[k], t);
+  camT.copy(a.camV).lerp(b.camV, t); lookT.copy(a.tgtV).lerp(b.tgtV, t);
+  fogC.copy(a.fogCC).lerp(b.fogCC, t);
+  if (innerWidth / innerHeight < .8) camT.sub(lookT).multiplyScalar(1.4).add(lookT);
+}
+
+const mouse = { x: 0, y: 0, sx: 0, sy: 0 };
+if (!mobile) addEventListener('pointermove', e => { mouse.x = e.clientX / innerWidth - .5; mouse.y = e.clientY / innerHeight - .5; });
+
+// ---------- loop ----------
+const clock = new THREE.Clock();
+let introT = reduce ? 20 : 0, running = true, spinA = 0;
+const look = new V3(0, 11, 0), tmpV = new V3(), tmpP = new V3(), sc = new V3();
+setTimeout(startDom, reduce ? 0 : 350);
+
+function frame() {
+  if (!running) return;
+  requestAnimationFrame(frame);
+  const dt = Math.min(clock.getDelta(), 1 / 30), time = clock.elapsedTime;
+  introT += dt;
+
+  target = progressFromScroll();
+  smooth = reduce ? Math.round(target) : smooth + (target - smooth) * (1 - Math.exp(-4 * dt));
+  resolve(smooth);
+
+  // --- intro：タワーが「ボーン」と立ち上がり、光の波で街が生まれる ---
+  const iTower = outBack(clamp((introT - .15) / .9));
+  towerG.scale.set(1, Math.max(.001, iTower), 1);
+  const waveT = introT - 1.0;
+  const wave = waveT > 0 ? waveT * 62 : -100;
+  const waveAmp = waveT > 0 ? 1 - clamp(waveT / 2.6) : 0;
+  cityMat.uniforms.uRise.value = outCubic(clamp((introT - .85) / 2.3)) * (maxD + 20);
+  cityMat.uniforms.uWave.value = wave; cityMat.uniforms.uWaveAmp.value = waveAmp;
+  shock.visible = waveAmp > 0; shock.scale.setScalar(Math.max(wave, .01)); shock.material.opacity = waveAmp;
+  const spike = Math.exp(-Math.pow(introT - 1.05, 2) / .04) * 2.6;
+  bloom.strength = .5 + S.glow * .25 + spike;
+
+  // --- camera ---
+  const pull = 1 - outCubic(clamp((introT - .1) / 2.8));
+  mouse.sx += (mouse.x - mouse.sx) * .05; mouse.sy += (mouse.y - mouse.sy) * .05;
+  tmpV.copy(camT).add(new V3(mouse.sx * 4, -mouse.sy * 2.5 + pull * 34, pull * 40));
+  camera.position.lerp(tmpV, introT < 3.2 ? 1 : 1 - Math.exp(-5 * dt));
+  look.lerp(lookT, 1 - Math.exp(-5 * dt)); camera.lookAt(look);
+
+  // --- world state ---
+  spinA += dt * (reduce ? 0 : S.spin);
+  world.rotation.y = spinA;
+  scene.fog = null;
+  for (const m of [cityMat, towerMat]) { m.uniforms.uFog.value = S.fog; m.uniforms.uTime.value = time; }
+  ground.material.uniforms.uFog.value = S.fog;
+  cityMat.uniforms.uLit.value = S.lit;
+  towerMat.uniforms.uLit.value = clamp(S.glow * .7);
+  const pulse = .5 + .5 * Math.sin(time * 2.4);
+  beaconMat.color.copy(ACCENT).multiplyScalar((.3 + S.glow * 2.2) * (.75 + pulse * .25));
+  beacon.scale.setScalar(.8 + S.glow * .5 + pulse * .15);
+  crownMat.color.copy(ACCENT).multiplyScalar(.2 + S.glow * 1.3);
+  beamMat.opacity = S.beam * .09 * (.85 + pulse * .15);
+  stars.material.opacity = .25 + (1 - S.fog * 25) * .4;
+
+  // traffic
+  carMat.opacity = S.traffic;
+  for (let i = 0; i < TN; i++) {
+    const c = cars[i]; const along = (((c.phase + time * c.speed) % L) + L) % L - L / 2;
+    if (c.axis === 0) { tmpP.set(along, .12, c.lane); m4.compose(tmpP, qX, sc.set(1, 1, 1)); }
+    else { tmpP.set(c.lane, .12, along); m4.compose(tmpP, q0, sc.set(1, 1, 1)); }
+    carMesh.setMatrixAt(i, m4);
+  }
+  carMesh.instanceMatrix.needsUpdate = true;
+
+  // arcs
+  arcs.forEach((a, i) => {
+    const reach = clamp(S.arcs * 1.6 - a.ord * .6);
+    a.line.geometry.setDrawRange(0, Math.floor((SEG + 1) * reach));
+    const arrived = clamp((reach - .95) * 20);
+    const end = a.curve.v2;
+    m4.compose(end, q0.clone().setFromAxisAngle(new V3(0, 1, 0), time + i), sc.setScalar(Math.max(arrived * (1 + .2 * Math.sin(time * 3 + i)), .0001)));
+    markMesh.setMatrixAt(i, m4);
+    if (arrived > .5) { a.curve.getPoint((time * .35 + i * .137) % 1, tmpP); pktPos.set([tmpP.x, tmpP.y, tmpP.z], i * 3); }
+    else pktPos.set([0, -999, 0], i * 3);
+  });
+  markMesh.instanceMatrix.needsUpdate = true; pktGeo.attributes.position.needsUpdate = true;
+  arcMat.opacity = .25 + S.arcs * .6;
+
+  const active = Math.round(target);
+  railLinks.forEach((a, i) => a.classList.toggle('on', i === active));
+
+  composer.render();
+}
+frame();
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight); measure();
+});
+document.addEventListener('visibilitychange', () => {
+  running = !document.hidden; if (running) { clock.getDelta(); frame(); }
+});
+}
+</script>
+<div style="position:fixed;left:16px;bottom:16px;z-index:60;font-size:11px;letter-spacing:.04em;color:#c9ccd6;background:rgba(10,13,22,.7);border:1px solid rgba(255,255,255,.15);border-radius:999px;padding:6px 12px;backdrop-filter:blur(8px)">制作見本|社名・数値・連絡先はすべて架空です</div>
+</body>
+</html>
